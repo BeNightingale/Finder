@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
             int[] numbers = readInput(scanner);
             System.out.println("Missing number: " + findMissingNumber(numbers));
-        } catch (InputException e) {
-            System.out.println(e.getMessage());;
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -22,7 +22,7 @@ public class Main {
         return expectedSum - realsSum;
     }
 
-    public static int[] readInput(Scanner scanner) throws InputException {
+    public static int[] readInput(Scanner scanner) throws InvalidInputException {
         System.out.println("Write the number of numbers");
         int numberOfNumbers = scanner.nextInt();
         int[] numbers = new int[numberOfNumbers];
@@ -31,7 +31,7 @@ public class Main {
             numbers[i] = scanner.nextInt();
         }
         if (!Validator.isValid(numbers)) {
-            throw new InputException();
+            throw new InvalidInputException();
         }
         return numbers;
     }
